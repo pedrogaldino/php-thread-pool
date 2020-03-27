@@ -1,0 +1,31 @@
+{
+    "name": "pedrogaldino/php-thread-pool",
+    "description": "Implementação de uma interface para utilização de Thread Pool com PHP",
+    "keywords": [
+        "php",
+        "pool",
+        "threads",
+        "multithread",
+        "parallel"
+    ],
+    "homepage": "http://pedrogaldino.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pedro Galdino",
+            "email": "eu@pedrogaldino.com",
+            "role": "developer"
+        }
+    ],
+    "require": {
+        "tightenco/collect": "7.3",
+        "ext-json": "*",
+        "ext-parallel": "*"
+    },
+    "autoload": {
+        "psr-4": { "Galdino\\Threads\\" : "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Galdino\\Threads\\Tests\\" : "test/" }
+    }
+}
