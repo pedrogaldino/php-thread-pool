@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Galdino\Pool;
+namespace Galdino\Threads\Pool;
 
 
 class Pool
@@ -84,16 +84,26 @@ class Pool
         ];
     }
 
-    public function addTask(Task $task, $forceQueueCreation = false)
+    public function addTask($task, $forceQueueCreation = false)
     {
+        if($task instanceof \Closure) {
+            $task = new ClosureTask($task);
+        } else if(!$task instanceof Task) {
+            throw new \Exception('Task must be a instance of Task or Closure');
+        }
+
         if(empty($this->queues)) {
             $queueName = count($this->queues) + 1;
 
-            $this->addQueue($queueName);
+            $this
+                ->addQueue($queueName)
+                ->addTask($task);
         } elseif ($forceQueueCreation) {
             $queueName = count($this->queues) + 1;
 
-            $this->addQueue($queueName);
+            $this
+                ->addQueue($queueName)
+                ->addTask($task);
         } else {
             $this
                 ->getBetterQueue()

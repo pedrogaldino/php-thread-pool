@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "tightenco/collect": "7.3",
+        "tightenco/collect": "^7.3",
         "ext-json": "*",
         "ext-parallel": "*"
     },

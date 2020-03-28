@@ -1,6 +1,6 @@
 <?php
 
-namespace Galdino\Pool;
+namespace Galdino\Threads\Pool;
 
 
 class Bootstrap
@@ -43,4 +43,5 @@ class Bootstrap
     {
         return new Bootstrap($files, $tryAutoloadVendorBootstrap);
     }
+
 }

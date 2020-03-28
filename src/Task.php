@@ -1,6 +1,6 @@
 <?php
 
-namespace Galdino\Pool;
+namespace Galdino\Threads\Pool;
 
 abstract class Task
 {
