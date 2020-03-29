@@ -1,7 +1,7 @@
 
 # PHP Thread Pool
 
-This package is a simple Thread Pool manager to create concurrent tasks easy using a great and simple interface.
+This package is a simple PHP Thread Pool manager to create concurrent tasks easily using a great and simple interface.
 
 It's require PHP 7.4 Thread Safe and PHP Parallel extension.
 
@@ -99,7 +99,7 @@ If you don't need the pool, you can create a queue separately too
     use Galdino\Threads\Pool\Queue;
     
     $bootstrap = new Bootstrap();
-    $queue = new Queue('My queue name');
+    $queue = new Queue('My queue name', $bootstrap);
     
     $queue->addTask($myTask);
 
