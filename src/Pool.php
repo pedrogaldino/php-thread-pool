@@ -4,6 +4,8 @@
 namespace Galdino\Threads\Pool;
 
 
+use Tightenco\Collect\Support\Arr;
+
 class Pool
 {
     protected $bootstrap;
@@ -75,7 +77,7 @@ class Pool
 
     public function getBetterQueue() : Queue
     {
-        $ordered = array_sort($this->queues, function(Queue $queue) {
+        $ordered = Arr::sort($this->queues, function(Queue $queue) {
             return $queue->tasks();
         });
 
