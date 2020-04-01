@@ -15,7 +15,7 @@ class Queue
 
     protected $bootstrap;
 
-    protected $futures = [];
+    protected $tasks = 0;
 
     public $id;
 
@@ -37,9 +37,7 @@ class Queue
 
     public function isAvailable()
     {
-        $this->updateFutures();
-
-        return count($this->futures) == 0;
+        return true;
     }
 
     public function setBootstrap(Bootstrap $bootstrap)
@@ -67,7 +65,12 @@ class Queue
     {
         return function ($name, Channel $channel, array $bootstraps) {
             foreach ($bootstraps as $bootstrap) {
-                require_once $bootstrap;
+                try {
+                    require_once $bootstrap;
+                } catch (\Exception $exception) {
+                    print "Error ocurred on autoload: " . $exception->getMessage() . PHP_EOL;
+                    return;
+                }
             }
 
             print "Queue: $name started " . PHP_EOL;
@@ -90,9 +93,7 @@ class Queue
 
     public function tasks() : int
     {
-        $this->updateFutures();
-
-        return count($this->futures);
+        return $this->tasks;
     }
 
     protected function updateFutures()
@@ -106,15 +107,15 @@ class Queue
 
     public function addTask(Task $task)
     {
-        $this->futures[] = $this->runtime->run($this->runtimeListener(), [
+        $this->runtime->run($this->runtimeListener(), [
             $this->getName(),
             $this->channel,
             $this->getBootstrap()->getFiles()
         ]);
 
-//        $this->updateFutures();
-
         $this->channel->send($task);
+
+        $this->tasks++;
     }
 
 }
