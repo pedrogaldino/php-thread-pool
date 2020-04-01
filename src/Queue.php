@@ -107,7 +107,7 @@ class Queue
 
     public function addTask(Task $task)
     {
-        $this->runtime->run($this->runtimeListener(), [
+        $future = $this->runtime->run($this->runtimeListener(), [
             $this->getName(),
             $this->channel,
             $this->getBootstrap()->getFiles()
