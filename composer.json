@@ -1,5 +1,5 @@
 {
-    "name": "pedrogaldino/php-thread-pool",
+    "name": "rauny-henrique/php-thread-pool",
     "description": "Implementação de uma interface para utilização de Thread Pool com PHP",
     "keywords": [
         "php",
